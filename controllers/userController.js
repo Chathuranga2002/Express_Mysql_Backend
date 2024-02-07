@@ -1,5 +1,9 @@
 const db = require('../DB/DBconection');
-const UserModel = require('../modle/User')
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const dotenv =  require('dotenv');
+dotenv.config();
+
 
 const userController = {
     // save user
@@ -12,6 +16,7 @@ const userController = {
             } else {
                 res.status(201).send('User created successfully');
                 console.log(UserModel);
+                console.log(process.env.JWT_SECRET_KEY)
             }
         });
     },
