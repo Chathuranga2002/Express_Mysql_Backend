@@ -7,9 +7,10 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 });
-// Attempt to connect to the database
+
 db.connect((err) => {
-    if (err) {
+    if (err) {9
+
         console.error('Error connecting to the database:', err);
         return;
     }

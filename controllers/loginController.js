@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const dotenv =  require('dotenv');
 dotenv.config();
 
-
+let  refreshTokens=[];
 const loginController = {
 
     //login
@@ -16,7 +16,10 @@ const loginController = {
             } else {
                 if (results.length > 0) {
                     const token = jwt.sign({ user_name:user_name }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+                    const refreshToken= jwt.sign({ user_name:user_name }, process.env.JWT_SECRET_KEY,{expiresIn: '24h'});
                     res.status(200).json({ token });
+                    // refreshTokens.push(refreshToken);
+                    // res.send({token,refreshToken});
                     // res.status(200).send('Login successful');
                 } else {
                     res.status(401).send('Invalid username or password');
